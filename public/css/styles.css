@@ -4,3 +4,266 @@
 *:after {
   box-sizing: border-box;
 }
+body {
+  font-family: "Bona Nova SC", serif;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.siteName a {
+  text-decoration: none;
+  font-size: 1.7rem;
+  color: black;
+  font-weight: bold;
+}
+
+#tools a {
+  text-decoration: none;
+  font-size: .85rem;
+  color: black;
+  font-weight: bold;
+}
+
+/***************
+ Navigation 
+ ***************/
+nav {
+  background-color: black;
+}
+
+#links {
+  color: white;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: .75rem;
+  margin: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+p {
+  font-weight: bold;
+}
+
+/**************************
+ Container 
+ *****************************/
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.container img {
+  display: block;
+  padding-left: 25%;
+  width: 250px;
+}
+ 
+.overlay-text {
+  position: absolute;
+  bottom: 4px;
+  left: 1px;
+  right: 10px;
+  color: rgb(12, 168, 196);
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.7);
+  line-height: .75;
+  font-size: 75%;
+  width: 125px;
+  padding: 5px;
+}
+
+.overlay-text h2 {
+  font-weight: 900;
+}
+
+.overlay-text h2, .overlay-text p, .overlay-text button {
+  margin: 5px 0;
+}
+
+.button {
+  background-color: rgb(12, 168, 196);
+  border: none;
+}
+
+/************************
+ Reviews 
+ **************************/
+
+.reviews {
+padding-top: 0;
+margin-top: 0;
+padding-left: 10px;
+}
+
+#reviews h2 {
+  font-size: 1rem;
+}
+
+.reviews li {
+  padding: 5px;
+  font-size: 13px;
+}
+
+#reviews h2 {
+  margin-bottom: 2px;
+}
+
+/******************
+ upgrades 
+ **********************/
+
+#upgrades h2 {
+  font-size: 1rem;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+#upgradeLinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#upgradeLinks figure {
+  display: grid;
+  align-items: center;
+  background-color: rgb(12, 168, 196);
+  border: 1px solid black;
+  padding: 1rem;
+  width: 150px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+#upgradeLinks img {
+  display: block;
+  margin: 0 auto 0.5rem auto;  
+}
+
+#upgradeLinks a {
+  margin-top: .5rem;
+  border: none;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+
+#upgradeLinks figcaption a {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 12px;
+}
+
+#upgradeLinks figure {
+  background-color: rgb(12, 168, 196);
+  padding: 5px;  
+}
+
+
+/******************************
+ Desk Top View 
+ ******************************/
+
+ @media screen and (min-width:500px) {
+  body {
+    max-width: 1080px;
+    margin: auto;
+    background-image: url('/images/site/checkerboard.jpg');
+  }
+
+  #wrapper {
+    background-color: white;
+    border: 6px solid rgb(12, 168, 196);
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .siteName a {
+    font-size: 2.5rem;
+    padding-left: 1rem;
+    margin-top: 4rem;
+  }
+  #tools a {
+    font-size: 1.5rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+  }
+
+  #links {
+    font-size: 1.5rem;
+    gap: 7rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .overlay-text h2 {
+    font-size: 2rem;
+  }
+
+  .container img {
+    width: 800px;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .overlay-text {
+    width: 275px;
+    margin-left: 3rem;
+    margin-bottom: 7rem;
+  }
+  #details p {
+    font-size: 20px;
+  }
+
+  #upgradesReviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #reviews {
+    grid-column: 2/3;
+    padding-left: 1rem;
+  }
+
+  #reviews h2 {
+    margin-left: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+  }
+
+  #reviews li {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+   
+  #upgrades h2 {
+    margin-left: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  #upgrades {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  
+  footer {
+    margin-left: 1rem;
+  }
+}
