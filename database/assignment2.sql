@@ -26,7 +26,7 @@ SET inv_description = REPLACE (
         'the small interiors',
         'a huge interior'
     )
-WHERE inv_make = 'GM' inv_model = 'Hummer';
+WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
 SELECT i.inv_make,
     i.inv_model,
@@ -41,4 +41,5 @@ SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
         inv_thumbnail,
         '/images/',
         '/images/vehicles/'
-    );
+    )
+ WHERE inv_make = 'GM' AND inv_model = 'Hummer';   

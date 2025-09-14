@@ -240,7 +240,7 @@ SET inv_description = REPLACE (
         'the small interiors',
         'a huge interior'
     )
-WHERE inv_make = 'GM' inv_model = 'Hummer';
+WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
 UPDATE inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
@@ -248,4 +248,5 @@ SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
         inv_thumbnail,
         '/images/',
         '/images/vehicles/'
-    );
+    )
+ WHERE inv_make = 'GM' AND inv_model = 'Hummer';   
