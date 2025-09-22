@@ -34,10 +34,11 @@ Util.buildClassificationGrid = async function(data){
   if(data.length > 0){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
+      let imagePath = vehicle.inv_thumbnail.replace('/images/', '/images/vehicles/')
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + 'details"><img src="' + imagePath 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -57,6 +58,38 @@ Util.buildClassificationGrid = async function(data){
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
+}
+
+/* **************************************
+* Build the inventory item detail view HTML ---  THIS IS STEP #4 
+* ************************************ */
+Util.buildItemDetailView = function(data){
+  let detail
+  if(data){
+    let imagePath = data.inv_image.replace('/images/', '/images/vehicles/')
+    detail = '<div id="inv-detail">'
+    detail += '<div class="vehicle-image">'
+    detail += '<img src="' + imagePath 
+    + '" alt="Image of ' + data.inv_make + ' ' + data.inv_model 
+    + ' on CSE Motors" />'
+    detail += '</div>'
+    detail += '<div class="vehicle-info">'
+    detail += '<h2>' + data.inv_make + ' ' + data.inv_model + ' Details</h2>'
+    detail += '<ul class="vehicle-specs">'
+    detail += '<li><strong>Make:</strong> ' + data.inv_make + '</li>'
+    detail += '<li><strong>Model:</strong> ' + data.inv_model + '</li>'
+    detail += '<li><strong>Year:</strong> ' + data.inv_year + '</li>'
+    detail += '<li><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(data.inv_price) + '</li>'
+    detail += '<li><strong>Description:</strong> ' + data.inv_description + '</li>'
+    detail += '<li><strong>Miles:</strong> ' + new Intl.NumberFormat('en-US').format(data.inv_miles) + '</li>'
+    detail += '<li><strong>Color:</strong> ' + data.inv_color + '</li>'
+    detail += '</ul>'
+    detail += '</div>'
+    detail += '</div>'
+  } else {
+    detail = '<p class="notice">Sorry, no vehicle details could be found.</p>'
+  }
+  return detail
 }
 
 /* ****************************************

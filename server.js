@@ -22,6 +22,11 @@ app.use(expressLayouts)
 app.set("layout", "./layouts/layout" ) // not.at views root)
 
 /* ***********************
+ * Static Resources
+ *************************/
+app.use(express.static("public"))  // Add this line
+
+/* ***********************
  * Routes
  *************************/
 app.use(static)
