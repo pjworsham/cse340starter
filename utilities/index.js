@@ -34,7 +34,7 @@ Util.buildClassificationGrid = async function(data){
   if(data.length > 0){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
-      let imagePath = vehicle.inv_thumbnail.replace('/images/', '/images/vehicles/')
+      let imagePath = vehicle.inv_image.replace('/images/', '/images/vehicles/')
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
