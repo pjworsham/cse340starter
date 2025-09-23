@@ -4,8 +4,16 @@
 *:after {
   box-sizing: border-box;
 }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 body {
   font-family: "Bona Nova SC", serif;
+  margin: 0;
+  padding: 0;
 }
 
 #top-header {
@@ -31,22 +39,31 @@ body {
  Navigation 
  ***************/
 nav {
-  background-color: black;
+  background-color: rgb(12, 168, 196);
+  width: 100%;
 }
 
-#links {
-  color: white;
-  list-style: none;
+nav ul {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: .75rem;
-  margin: 1rem;
+  justify-content: space-around;  /* This spreads items across full width */
+  list-style: none;
+  background-color: rgb(12, 168, 196);
+  padding: 1rem 0;
+  width: 100%;      /* Add this */
+}
+
+
+
+nav ul li a {
+  color: black;
+  text-decoration: none;
   font-family: 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  /* padding: 0.5rem;  Add padding to links instead of ul */
 }
 
 h1 {
-  font-size: 1rem;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
@@ -176,6 +193,7 @@ padding-left: 10px;
 }
 
 
+
 /******************************
  Desk Top View 
  ******************************/
@@ -207,8 +225,9 @@ padding-left: 10px;
   }
 
   #links {
-    font-size: 1.5rem;
-    gap: 7rem;
+    padding: 0.5rem;  
+    /* font-size: 1.5rem;
+    gap: 7rem; */
   }
 
   h1 {
