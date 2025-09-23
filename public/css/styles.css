@@ -287,4 +287,13 @@ padding-left: 10px;
   footer {
     margin-left: 1rem;
   }
+  #inv-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #inv-display li {
+    padding: .5rem;
+
+  }
 }
