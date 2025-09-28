@@ -10,6 +10,9 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 // Route to display registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
+// registration route
+router.post('/register', utilities.handleErrors(accountController.registerAccount))
+
 // Route with flash message example
 router.get("/test-flash", utilities.handleErrors(accountController.testFlash))
 
