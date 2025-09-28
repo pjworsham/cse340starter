@@ -254,7 +254,9 @@ padding-left: 10px;
   color: white;
 }
 
-
+input:required:invalid, input:focus:invalid {
+  background-color: rgb(244, 208, 214);
+}
 /******************************
  Desk Top View 
  ******************************/

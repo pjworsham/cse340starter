@@ -15,6 +15,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
+    errors: null,
     grid,
     messages: function() { return ''; }  // Add this line
   })
@@ -32,6 +33,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
   res.render("./inventory/detail", {
     title: itemName,
     nav,
+    errors: null,
     grid,
      messages: function() { return ''; }  // Add this line
   })
