@@ -66,6 +66,10 @@ app.use("/inv", utilities.handleErrors(inventoryRoute))
 app.use("/account", utilities.handleErrors(accountRoute))
 
 
+// Account routes - WK04 "The login view" section was added
+app.use("/account", require("./routes/accountRoute"))
+
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

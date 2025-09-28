@@ -241,6 +241,18 @@ padding-left: 10px;
   border-radius: .4rem;
 }
 
+/************************
+ registration form 
+ ************************/
+
+#register-form {
+  background-color: rgb(3, 96, 126); 
+  box-shadow: 0 0 20px 8px rgb(12, 168, 196);
+  border-radius: .5rem;
+}
+#register-form label {
+  color: white;
+}
 
 
 /******************************
