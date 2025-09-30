@@ -64,14 +64,10 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 //Inventory routes
-app.use("/inv", utilities.handleErrors(inventoryRoute))
+app.use("/inv", inventoryRoute)
 
-//account routes
-app.use("/account", utilities.handleErrors(accountRoute))
-
-
-// Account routes - WK04 "The login view" section was added
-app.use("/account", require("./routes/accountRoute"))
+//Account routes
+app.use("/account", accountRoute)
 
 
 
@@ -87,6 +83,7 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  let message
   if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',

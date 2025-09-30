@@ -1,14 +1,15 @@
 <!-- THIS IS STEP #5 I CREATED THIS FILE -->
 
 <% if (title) { %>
-<h1><%= title %></h1>
-<% } else {
-  res.redirect('/')
+  <h1><%= title %></h1>
+<% } else { 
+  res.locals.title = "Vehicle Details" 
 } %>
 
-<!-- /* ********This is EJS *********/ -->
+<!-- Flash Messages -->
 <%- messages() %>
 
+<!-- Vehicle Detail Content -->
 <%- grid %>
 
 

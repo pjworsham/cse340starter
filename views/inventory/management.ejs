@@ -1,0 +1,19 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { 
+  res.locals.title = "Vehicle Management" 
+} %>
+
+<!-- Flash Messages -->
+<%- messages() %>
+
+<h2>Inventory Management</h2>
+
+<p>Welcome to the inventory management system. Use the links below to manage your vehicle inventory:</p>
+
+<div class="management-options">
+  <ul>
+    <li><a href="/inv/add-classification" title="Add New Classification">Add New Classification</a></li>
+    <li><a href="/inv/add-inventory" title="Add New Vehicle">Add New Vehicle</a></li>
+  </ul>
+</div>
