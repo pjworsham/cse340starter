@@ -22,4 +22,12 @@ router.post(
 // Route with flash message example
 router.get("/test-flash", utilities.handleErrors(accountController.testFlash))
 
+//  TEMPORARY Process the login attempt
+router.post(
+  "/login",
+  (req, res) => {
+    res.status(200).send('login process')
+  }
+)
+
 module.exports = router

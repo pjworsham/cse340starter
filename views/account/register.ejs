@@ -20,13 +20,13 @@
   <fieldset id="box">
 
     <label id= "fName" for="account_firstname">First Name:</label>
-    <input type="text" id="firstName" name="account_firstname" required>
+    <input type="text" id="firstName" name="account_firstname" required value="<%= locals.account_firstname %>">
 
     <label id="lName" for="account_lastname">Last Name:</label>
-    <input type="text" id="lastName" name="account_lastname" required>
+    <input type="text" id="lastName" name="account_lastname" required value="<%= locals.account_lastname %>">
     
     <label id="reg_email" for="account_email">Email:</label>
-    <input type="email" id="email" name="account_email" required>
+    <input type="email" id="email" name="account_email" required value="<%= locals.account_email %>">
     
     <label id="reg_password" for="account_password">Password:</label>
     <input 

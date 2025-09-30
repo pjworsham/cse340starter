@@ -12,12 +12,12 @@
   <fieldset id="box">
     
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email" required value="<%= locals.account_email %>">
     
     <label for="password">Password:</label>
     <input 
       type="password" id="password" name="password" 
-      required
+      required value="<%= locals.password %>"
       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#+\-_=])[A-Za-z\d@$!%*?&#+\-_=]{12,}$">
     
     <input type="submit" value="Login" class="button">
