@@ -10,5 +10,8 @@ router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByI
 
 router.get("/trigger-error", utilities.handleErrors(invController.triggerError))
 
+router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+router.post("/add-classification", utilities.handleErrors(invController.addClassification))
+
 module.exports = router;
 
