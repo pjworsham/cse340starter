@@ -33,10 +33,16 @@ Util.buildClassificationGrid = async function(data){
   if(data.length > 0){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
+      // Clean up the image path
+      let imagePath = vehicle.inv_image.replace('images/vehicles/vehicles/', 'images/vehicles/')
+      if (!imagePath.startsWith('/')) {
+        imagePath = '/' + imagePath
+      }
+      
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_image 
+      + 'details"><img src="' + imagePath 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -66,7 +72,7 @@ Util.buildItemDetailView = function(data){
   if(data){
     detail = '<div id="inv-detail">'
     detail += '<div class="vehicle-image">'
-    detail += '<img src="' + data.inv_image 
+    detail += '<img src="/' + data.inv_image.replace('images/vehicles/vehicles/', 'images/vehicles/') 
     + '" alt="Image of ' + data.inv_make + ' ' + data.inv_model 
     + ' on CSE Motors" />'
     detail += '</div>'
