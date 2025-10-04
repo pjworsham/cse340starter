@@ -78,4 +78,72 @@ async function registerAccount(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount }
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+async function accountLogin(req, res) {
+  console.log("=== LOGIN ATTEMPT ===")
+  console.log("Email:", req.body.account_email)
+  console.log("Password provided:", req.body.account_password ? "Yes" : "No")
+  
+  let nav = await utilities.getNav()
+  const { account_email, account_password } = req.body
+  
+  const accountData = await accountModel.getAccountByEmail(account_email)
+  console.log("Account found:", accountData ? "Yes" : "No")
+  
+  if (!accountData) {
+    console.log("No account found - showing error")
+    req.flash("notice", "Please check your credentials and try again.")
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+    })
+    return
+  }
+  try {
+    const passwordMatch = await bcrypt.compare(account_password, accountData.account_password)
+    console.log("Password match:", passwordMatch)
+    
+    if (passwordMatch) {
+      console.log("Login successful - redirecting to /account/")
+      delete accountData.account_password
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      if(process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      } else {
+        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+      }
+      return res.redirect("/account/")
+    }
+    else {
+      console.log("Password mismatch")
+      req.flash("notice", "Please check your credentials and try again.")
+      res.status(400).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+        account_email,
+      })
+    }
+  } catch (error) {
+    console.log("Login error:", error)
+    throw new Error('Access Forbidden')
+  }
+}
+
+/* ****************************************
+*  Deliver account management view - Wk5
+* *************************************** */
+async function buildAccountManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/account-management", {
+    title: "Account Management",
+    nav,
+    errors: null,
+  })
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement }

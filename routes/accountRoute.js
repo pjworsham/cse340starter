@@ -5,8 +5,12 @@ const accountController = require("../controllers/accountController")
 const utilities = require("../utilities")
 const regValidate = require('../utilities/account-validation')
 
+// Wk05 default route for account management (must be loged in)
+router.get("/", utilities.handleErrors(accountController.buildAccountManagement))
+
 // Route to display login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
+
 
 // Route to display registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
@@ -22,13 +26,16 @@ router.post(
 // Route with flash message example
 router.get("/test-flash", utilities.handleErrors(accountController.testFlash))
 
-// Process the login request
-router.post(
-  "/login",
-  regValidate.loginRules(),
-  regValidate.checkLoginData,
-  utilities.handleErrors(accountController.accountLogin)
-)
+// Process the login request (temporarily without validation)
+router.post("/login", utilities.handleErrors(accountController.accountLogin))
+
+// Process the login request (with validation - commented out for testing)
+// router.post(
+//   "/login",
+//   regValidate.loginRules(),
+//   regValidate.checkLoginData,
+//   utilities.handleErrors(accountController.accountLogin)
+// )
 
 //  TEMPORARY Process the login attempt
 // router.post(

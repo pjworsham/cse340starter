@@ -1,0 +1,21 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { 
+  res.locals.title = "Account Management" 
+} %>
+
+<!-- Flash Messages -->
+<%- messages() %>
+
+<!-- Display Validation Errors -->
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<h2>Account Management</h2>
+
+<p>You're logged in</p>
