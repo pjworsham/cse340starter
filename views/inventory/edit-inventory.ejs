@@ -16,7 +16,7 @@
   </ul>
 <% } %>
 
-<form id="edit-inventory-form" action="/inv/update" method="post">
+<form id="edit-inventory-form" action="/inv/update/" method="post">
   <fieldset id="inventory-form">
 
     <!-- wk5 -->
@@ -123,9 +123,8 @@
     >
     
     <input type="submit" name="submit" value="Edit Vehicle" class="button">
-    <input type="hidden" name="inv_id"
-    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
-    <% } %>>
+    <!-- <input type="hidden" name="inv_id" -->
+    
   </fieldset>
 </form>
 
