@@ -1,0 +1,238 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { 
+  res.locals.title = "Edit New Vehicle" 
+} %>
+
+<!-- Flash Messages -->
+<%- messages() %>
+
+<!-- Display Validation Errors -->
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form id="edit-inventory-form" action="/inv/update" method="post">
+  <fieldset id="inventory-form">
+
+    <!-- wk5 -->
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+      
+    <label for="classification_id">Classification: *</label>
+    <%- classificationSelect %>
+    
+    <label for="inv_make">Make: *</label>
+    <input 
+      type="text" 
+      id="inv_make" 
+      name="inv_make" 
+      required
+      minlength="3"
+      value="<%= inv_make || '' %>"
+      placeholder="Enter vehicle make"
+    >
+    
+    <label for="inv_model">Model: *</label>
+    <input 
+      type="text" 
+      id="inv_model" 
+      name="inv_model" 
+      required
+      minlength="3"
+      value="<%= inv_model || '' %>"
+      placeholder="Enter vehicle model"
+    >
+    
+    <label for="inv_description">Description: *</label>
+    <textarea 
+      id="inv_description" 
+      name="inv_description" 
+      required
+      rows="4"
+      placeholder="Enter vehicle description"
+    ><%= inv_description || '' %></textarea>
+    
+    <label for="inv_image">Image Path: *</label>
+    <input 
+      type="text" 
+      id="inv_image" 
+      name="inv_image" 
+      required
+      value="<%= inv_image || '/images/vehicles/no-image.png' %>"
+      placeholder="/images/vehicles/no-image.png"
+    >
+    
+    <label for="inv_thumbnail">Thumbnail Path: *</label>
+    <input 
+      type="text" 
+      id="inv_thumbnail" 
+      name="inv_thumbnail" 
+      required
+      value="<%= inv_thumbnail || '/images/vehicles/no-image-tn.png' %>"
+      placeholder="/images/vehicles/no-image-tn.png"
+    >
+    
+    <label for="inv_price">Price: *</label>
+    <input 
+      type="number" 
+      id="inv_price" 
+      name="inv_price" 
+      required
+      min="0"
+      step="0.01"
+      value="<%= inv_price || '' %>"
+      placeholder="0.00"
+    >
+    
+    <label for="inv_year">Year: *</label>
+    <input 
+      type="number" 
+      id="inv_year" 
+      name="inv_year" 
+      required
+      min="1900"
+      max="<%= new Date().getFullYear() + 1 %>"
+      value="<%= inv_year || '' %>"
+      placeholder="<%= new Date().getFullYear() %>"
+    >
+    
+    <label for="inv_miles">Mileage: *</label>
+    <input 
+      type="number" 
+      id="inv_miles" 
+      name="inv_miles" 
+      required
+      min="0"
+      value="<%= inv_miles || '' %>"
+      placeholder="0"
+    >
+    
+    <label for="inv_color">Color: *</label>
+    <input 
+      type="text" 
+      id="inv_color" 
+      name="inv_color" 
+      required
+      minlength="2"
+      value="<%= inv_color || '' %>"
+      placeholder="Enter vehicle color"
+    >
+    
+    <input type="submit" name="submit" value="Edit Vehicle" class="button">
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+  </fieldset>
+</form>
+
+<script>
+// Client-side validation
+document.getElementById('edit-inventory-form').addEventListener('submit', function(e) {
+  let isValid = true;
+  let errors = [];
+  
+  // Classification validation
+  const classification = document.getElementById('classificationList').value;
+  if (!classification) {
+    errors.push('Please select a classification.');
+    isValid = false;
+  }
+  
+  // Make validation
+  const make = document.getElementById('inv_make').value.trim();
+  if (make.length < 3) {
+    errors.push('Make must be at least 3 characters long.');
+    isValid = false;
+  }
+  
+  // Model validation
+  const model = document.getElementById('inv_model').value.trim();
+  if (model.length < 3) {
+    errors.push('Model must be at least 3 characters long.');
+    isValid = false;
+  }
+  
+  // Description validation
+  const description = document.getElementById('inv_description').value.trim();
+  if (description.length < 10) {
+    errors.push('Description must be at least 10 characters long.');
+    isValid = false;
+  }
+  
+  // Image path validation
+  const imagePath = document.getElementById('inv_image').value.trim();
+  if (!imagePath.startsWith('/images/')) {
+    errors.push('Image path must start with "/images/".');
+    isValid = false;
+  }
+  
+  // Thumbnail path validation
+  const thumbnailPath = document.getElementById('inv_thumbnail').value.trim();
+  if (!thumbnailPath.startsWith('/images/')) {
+    errors.push('Thumbnail path must start with "/images/".');
+    isValid = false;
+  }
+  
+  // Price validation
+  const price = parseFloat(document.getElementById('inv_price').value);
+  if (isNaN(price) || price <= 0) {
+    errors.push('Please enter a valid price greater than 0.');
+    isValid = false;
+  }
+  
+  // Year validation
+  const year = parseInt(document.getElementById('inv_year').value);
+  const currentYear = new Date().getFullYear();
+  if (isNaN(year) || year < 1900 || year > currentYear + 1) {
+    errors.push(`Year must be between 1900 and ${currentYear + 1}.`);
+    isValid = false;
+  }
+  
+  // Mileage validation
+  const miles = parseInt(document.getElementById('inv_miles').value);
+  if (isNaN(miles) || miles < 0) {
+    errors.push('Please enter a valid mileage (0 or greater).');
+    isValid = false;
+  }
+  
+  // Color validation
+  const color = document.getElementById('inv_color').value.trim();
+  if (color.length < 2) {
+    errors.push('Color must be at least 2 characters long.');
+    isValid = false;
+  }
+  
+  if (!isValid) {
+    e.preventDefault();
+    alert('Please fix the following errors:\n\n' + errors.join('\n'));
+    return false;
+  }
+});
+
+// Real-time validation feedback
+document.editEventListener('DOMContentLoaded', function() {
+  const inputs = document.querySelectorAll('input, select, textarea');
+  
+  inputs.forEach(input => {
+    input.editEventListener('blur', function() {
+      validateField(this);
+    });
+  });
+  
+  function validateField(field) {
+    // Remove existing error styling
+    field.classList.remove('error');
+    
+    // Basic validation
+    if (field.hasAttribute('required') && !field.value.trim()) {
+      field.classList.edit('error');
+      return false;
+    }
+    
+    return true;
+  }
+});

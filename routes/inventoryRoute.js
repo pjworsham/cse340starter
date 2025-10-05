@@ -18,6 +18,8 @@ router.post("/add-inventory", utilities.handleErrors(invController.addInventory)
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditView))
+
 router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteView))
 router.post("/delete/", utilities.handleErrors(invController.deleteInventory))
 
