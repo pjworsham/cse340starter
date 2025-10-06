@@ -4,6 +4,42 @@ const validate = {}
 const invModel = require("../models/inventory-model")
 
 /*  **********************************
+*  Classification Data Validation Rules
+* ********************************* */
+validate.classificationRules = () => {
+    return [
+      // classification_name is required and must be valid
+      body("classification_name")
+        .trim()
+        .escape()
+        .notEmpty()
+        .isLength({ min: 1 })
+        .matches(/^[A-Za-z]+$/)
+        .withMessage("Classification name cannot contain spaces or special characters. Only letters are allowed."),
+    ]
+}
+
+/* ******************************
+ * Check classification data and return errors or continue
+ * ***************************** */
+validate.checkClassificationData = async (req, res, next) => {
+  const { classification_name } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("inventory/add-classification", {
+      errors,
+      title: "Add New Classification",
+      nav,
+      classification_name,
+    })
+    return
+  }
+  next()
+}
+
+/*  **********************************
 *  Inventory Data Validation Rules
 * ********************************* */
 validate.inventoryRules = () => {
