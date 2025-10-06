@@ -207,7 +207,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
 }
 
 /* ***************************
- *  Build edit inventory view
+ *  Build edit inventory view - Build the update view
  * ************************** */
 invCont.buildEditView = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
@@ -294,5 +294,46 @@ invCont.updateInventory = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Delete Inventory Data - Team activity wk5
+ * ************************** */
+invCont.deleteInventory = async function(req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const inv_id = parseInt(req.body.inv_id);
+    const deleteResult = await invModel.deleteInventory(inv_id);
+    
+    if (deleteResult) {
+      req.flash("notice", "The vehicle was successfully deleted.");
+      res.redirect("/inv/");
+    } else {
+      req.flash("notice", "Sorry, the deletion failed.");
+      res.redirect("/inv/");
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+/* ***************************
+ *  Delete Inventory Data - Team activity wk5
+ * ************************** */
+invCont.deleteInventory = async function(req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const inv_id = parseInt(req.body.inv_id);
+    const deleteResult = await invModel.deleteInventory(inv_id);
+    
+    if (deleteResult) {
+      req.flash("notice", "The vehicle was successfully deleted.");
+      res.redirect("/inv/");
+    } else {
+      req.flash("notice", "Sorry, the deletion failed.");
+      res.redirect(`/inv/delete/${inv_id}`);
+    }
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = invCont
