@@ -1,0 +1,102 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { 
+  res.locals.title = "Update Account Information" 
+} %>
+
+<!-- Flash Messages -->
+<%- messages() %>
+
+<!-- Display Validation Errors -->
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+
+
+<!-- Account information update form -->
+<form id="update-account-form" action="/account/update" method="post">
+  <fieldset>
+    <legend>Account Update</legend>
+    
+    <input type="hidden" name="account_id" value="<%= account_id %>">
+    
+    <label for="account_firstname">First Name:</label>
+    <input 
+      type="text" 
+      id="account_firstname" 
+      name="account_firstname" 
+      required
+      value="<%= account_firstname %>"
+    >
+    
+    <label for="account_lastname">Last Name:</label>
+    <input 
+      type="text" 
+      id="account_lastname" 
+      name="account_lastname" 
+      required
+      value="<%= account_lastname %>"
+    >
+    
+    <label for="account_email">Email:</label>
+    <input 
+      type="email" 
+      id="account_email" 
+      name="account_email" 
+      required
+      value="<%= account_email %>"
+    >
+    
+    <input type="submit" value="Update Account" class="button">
+  </fieldset>
+</form>
+
+<a href="/account/">← Back to Account Management</a>
+
+<!-- Change Password Form -->
+<form id="change-password-form" action="/account/change-password" method="post">
+  <fieldset>
+    <legend>Change Password</legend>
+    
+    <input type="hidden" name="account_id" value="<%= account_id %>">
+    
+    <p class="password-info">
+      <strong>Note:</strong> Entering a new password will change your current password. 
+      Password must be at least 12 characters long and include an uppercase letter, 
+      lowercase letter, number, and special character.
+    </p>
+    
+    <label for="current_password">Current Password:</label>
+    <input 
+      type="password" 
+      id="current_password" 
+      name="current_password" 
+      required
+    >
+    
+    <label for="account_password">New Password:</label>
+    <input 
+      type="password" 
+      id="account_password" 
+      name="account_password" 
+      required
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$"
+      title="Password must be at least 12 characters with uppercase, lowercase, number, and special character"
+    >
+    
+    <label for="confirm_password">Confirm New Password:</label>
+    <input 
+      type="password" 
+      id="confirm_password" 
+      name="confirm_password" 
+      required
+    >
+    
+    <input type="submit" value="Change Password" class="button">
+  </fieldset>
+</form>

@@ -16,8 +16,14 @@
   </ul>
 <% } %>
 
-<h2>Welcome <%= locals.accountData.account_firstname %> <%= locals.accountData.account_lastname %></h2>
-<p>You're logged in</p>
+<!-- wk 5 assignment welcome greeting for all users -->
+<h3>Welcome <%= locals.accountData.account_firstname %></h3>
+
+<p>You're logged in.</p>
+
+<!-- Wk 5 Assignment Update account information link for all users -->
+<p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
+
 
 <!-- Wk 5 Assignment - Show inventory management link only for Employee/Admin -->
 <% if (locals.accountData.account_type == 'Employee' || locals.accountData.account_type == 'Admin') { %>

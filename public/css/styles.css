@@ -257,6 +257,90 @@ padding-left: 10px;
 input:required:invalid, input:focus:invalid {
   background-color: rgb(227, 248, 213);
 }
+
+/************************
+ Update Account Forms 
+ ************************/
+
+#update-account-form, #change-password-form {
+  background-color: rgb(3, 96, 126); 
+  box-shadow: 0 0 20px 8px rgb(12, 168, 196);
+  border-radius: .5rem;
+  margin-bottom: 2rem;
+}
+
+#update-account-form fieldset, #change-password-form fieldset {
+  border: gray solid 5px;
+  border-radius: .5rem;
+  padding: 1rem;
+  margin: 0;
+}
+
+#update-account-form legend, #change-password-form legend {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+}
+
+#update-account-form label, #change-password-form label {
+  color: white;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#update-account-form input[type="text"], 
+#update-account-form input[type="email"], 
+#change-password-form input[type="password"] {
+  border-radius: .4rem;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+}
+
+#update-account-form input[type="submit"], 
+#change-password-form input[type="submit"] {
+  background-color: white;
+  max-width: 400px;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#update-account-form input[type="submit"]:hover, 
+#change-password-form input[type="submit"]:hover {
+  background-color: #f0f0f0;
+}
+
+/* Navigation link styling */
+.navigation {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.navigation a {
+  color: rgb(12, 168, 196);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+.password-info {
+  font-size: 0.9em;
+  color: #ccc;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
 /******************************
  Desk Top View 
  ******************************/
