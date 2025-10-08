@@ -6,7 +6,10 @@ const utilities = require("../utilities")
 const regValidate = require('../utilities/account-validation')
 
 // Wk05 default route for account management (must be loged in)
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
+router.get("/", 
+  utilities.checkJWTToken,    // Check JWT token first
+  utilities.checkLogin,       // check if logged in
+  utilities.handleErrors(accountController.buildAccountManagement))
 
 // Route to display login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
@@ -27,7 +30,10 @@ router.post(
 router.get("/test-flash", utilities.handleErrors(accountController.testFlash))
 
 // Process the login request (temporarily without validation)
-router.post("/login", utilities.handleErrors(accountController.accountLogin))
+router.post("/login", 
+  regValidate.loginRules(),        // Validation rules
+  regValidate.checkLoginData,      // Check validation
+  utilities.handleErrors(accountController.accountLogin))
 
 // Wk 5 assignment - logout route
 router.get("/logout", utilities.handleErrors(accountController.accountLogout));
